@@ -9,7 +9,6 @@ import {
 } from 'react-native'
 
 const GoalInput = props => {
-    
     const [enteredGoal, setEnteredGoal] = useState("")
 
     const goalInputHandler = (enteredText) => {
@@ -17,6 +16,9 @@ const GoalInput = props => {
       }
 
     const addGoalHandler = () => {
+        if(enteredGoal.length === 0) {
+          return
+        }
         props.onAddGoal(enteredGoal)
         setEnteredGoal('')
     }
@@ -29,8 +31,10 @@ const GoalInput = props => {
               style={styles.input}
               onChangeText={goalInputHandler}
               value={enteredGoal}/>
-            <Button title="ADD" onPress={addGoalHandler}/>
-            <Button title="CANCEL" color="red" onPress={props.onCancel}/>
+            <View style={styles.buttonContainer}>
+              <View style={styles.button}><Button title="ADD" onPress={addGoalHandler}/></View>
+              <View style={styles.button}><Button title="CANCEL" color="red" onPress={props.onCancel}/></View>
+            </View>
           </View>
         </Modal>
         
@@ -49,6 +53,14 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
         margin: 10
+      },
+      buttonContainer: {
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        width: "60%"
+      },
+      button: {
+        width: "40%"
       }
 })
 
