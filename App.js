@@ -13,6 +13,8 @@ import {
 
 export default function App() {
 
+  console.log('REREDERING COMPONENT', courseGoals)
+
   const [courseGoals, setCourseGoals] = useState([])
   const [isAddMode, setIsAddMode] = useState(false)
 
@@ -22,6 +24,8 @@ export default function App() {
   }
 
   const removeGoalHandler = (goalId) => {
+     console.log('TO BE DELETED: ', goalId)
+
      setCourseGoals(currentGoals => {
        return currentGoals.filter(goal => goal.key !== goalId)
       })
